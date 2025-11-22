@@ -1,0 +1,45 @@
+# Cloud-Optimized Dockerfile for Railway/Render/Heroku
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PORT=8080
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgomp1 \
+    wget \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/src/app
+
+# Install Python packages (CPU-only for cloud deployment)
+RUN pip install --no-cache-dir \
+    ultralytics \
+    flask \
+    pillow \
+    opencv-python-headless \
+    numpy \
+    torch torchvision --index-url https://download.pytorch.org/whl/cpu \
+    gunicorn
+
+# Copy application files
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p datasets/pod-data/train/images datasets/pod-data/train/labels \
+             datasets/pod-data/val/images datasets/pod-data/val/labels \
+             datasets/pod-data/uploaded models runs inference_results
+
+# Expose port
+EXPOSE $PORT
+
+# Use Gunicorn for production
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 web-interface.app:app

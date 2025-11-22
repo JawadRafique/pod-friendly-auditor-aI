@@ -1,0 +1,28 @@
+# GitHub Codespaces Configuration
+{
+  "name": "Pod Detection Auditor",
+  "image": "mcr.microsoft.com/vscode/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "forwardPorts": [5000, 8080],
+  "portsAttributes": {
+    "5000": {
+      "label": "Pod Auditor Web Interface",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.flake8",
+        "ms-vscode.vscode-json",
+        "ms-vscode.docker"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}

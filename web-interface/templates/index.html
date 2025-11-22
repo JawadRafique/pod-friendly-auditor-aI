@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pod Detection Auditor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        .card-hover {
+            transition: transform 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-eye"></i> Pod Detection Auditor
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/upload">Upload</a>
+                <a class="nav-link" href="/train">Train</a>
+                <a class="nav-link" href="/inference">Test</a>
+                <a class="nav-link" href="/status">Status</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">
+                <i class="fas fa-universal-access"></i>
+                Pod-Friendly Auditor
+            </h1>
+            <p class="lead">AI-powered accessibility detection for public spaces</p>
+            <p>Train custom models to detect accessibility features: pod signs, ramps, tactile paving, and elevators</p>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row g-4">
+            <!-- Upload Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow card-hover">
+                    <div class="card-body text-center">
+                        <i class="fas fa-upload fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Upload Images</h5>
+                        <p class="card-text">Upload images for annotation and training</p>
+                        <a href="/upload" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Upload
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Train Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow card-hover">
+                    <div class="card-body text-center">
+                        <i class="fas fa-brain fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">Train Model</h5>
+                        <p class="card-text">Train or fine-tune your detection model</p>
+                        <a href="/train" class="btn btn-success">
+                            <i class="fas fa-cogs"></i> Train
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow card-hover">
+                    <div class="card-body text-center">
+                        <i class="fas fa-search fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Test Detection</h5>
+                        <p class="card-text">Test your trained model on new images</p>
+                        <a href="/inference" class="btn btn-info">
+                            <i class="fas fa-play"></i> Test
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow card-hover">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chart-line fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">System Status</h5>
+                        <p class="card-text">View training progress and statistics</p>
+                        <a href="/status" class="btn btn-warning">
+                            <i class="fas fa-info"></i> Status
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detection Classes Info -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-tags"></i> Detection Classes</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for class in classes %}
+                            <div class="col-md-3 mb-2">
+                                <span class="badge bg-secondary p-2">{{ class.replace('_', ' ').title() }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <p class="text-muted mt-3">
+                            <small>
+                                The system is designed to detect accessibility features in public spaces.
+                                Upload images containing these features and annotate them to improve the model.
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Start Guide -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-rocket"></i> Quick Start</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-2">1</div>
+                                    <h6>Upload Images</h6>
+                                    <small class="text-muted">Upload photos containing accessibility features</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-2">2</div>
+                                    <h6>Annotate</h6>
+                                    <small class="text-muted">Mark objects in your images with bounding boxes</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-2">3</div>
+                                    <h6>Train</h6>
+                                    <small class="text-muted">Train the AI model with your annotated data</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-2">4</div>
+                                    <h6>Test</h6>
+                                    <small class="text-muted">Test your model on new images</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2025 Pod Detection Auditor - Making public spaces more accessible</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
