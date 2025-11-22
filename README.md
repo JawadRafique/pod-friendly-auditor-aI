@@ -1,5 +1,7 @@
 # Pod-Friendly Auditor 🦾
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/pod-detection-auditor/blob/main/pod-auditor.ipynb)
+
 An AI-powered accessibility detection system that runs on **Google Colab for FREE**! Train custom object detection models to identify accessibility features like pod signs, ramps, tactile paving, and elevators in public spaces - no local setup required.
 
 ## 🌟 Features
