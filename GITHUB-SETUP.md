@@ -30,8 +30,11 @@ git push -u origin main
 ### Step 4: Enable GPU and Run
 1. **Runtime → Change runtime type → GPU → Save**
 2. **Runtime → Run all** (or Ctrl+F9)
-3. Follow the prompts for ngrok setup
-4. Get your public URL!
+3. **Choose your access method:**
+   - **Option A**: Skip ngrok → Use Colab interface directly
+   - **Option B**: Use ngrok for public URL (if signup works)
+   - **Option C**: Use alternatives: localtunnel, serveo, or Colab's built-in sharing
+4. Start uploading, annotating, and training!
 
 ## 🎯 Repository Features
 
@@ -55,6 +58,7 @@ git push -u origin main
 - **GitHub**: https://github.com/
 - **Google Colab**: https://colab.research.google.com/
 - **Ngrok Account**: https://dashboard.ngrok.com/get-started/your-authtoken
+- **Ngrok Alternatives**: localtunnel.me, serveo.net, or Colab's sharing features
 
 ## 🚀 Ready to Deploy!
 
